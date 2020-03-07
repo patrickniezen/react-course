@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 
 import Courses from './containers/Courses/Courses';
 import Users from './containers/Users/Users';
@@ -12,6 +12,7 @@ class App extends Component {
           <header>
             <nav>
               <ul>
+                <li><a href="/">Home</a></li>
                 <li><a href="/users">Users</a></li>
                 <li><a href="/courses">Courses</a></li>
               </ul>
@@ -32,6 +33,8 @@ class App extends Component {
             } />
             <Route path="/users" component={Users} />
             <Route path="/courses" component={Courses} />
+            <Redirect path="/all-courses" to="/courses" />
+            <Route render={() => <h1>Not found</h1>}/>
           </Switch>
         </div>
       </BrowserRouter>
