@@ -9,12 +9,14 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="App">
-          <nav>
-            <ul>
-              <li><a href="/users">Users</a></li>
-              <li><a href="/courses">Courses</a></li>
-            </ul>
-          </nav>
+          <header>
+            <nav>
+              <ul>
+                <li><a href="/users">Users</a></li>
+                <li><a href="/courses">Courses</a></li>
+              </ul>
+            </nav>
+          </header>
           <Switch>
             <Route path="/" exact render={() =>
               <ol style={{ textAlign: 'left' }}>
