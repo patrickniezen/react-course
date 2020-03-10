@@ -93,28 +93,38 @@ class BurgerBuilder extends Component {
     }
 
     purchaseContinueHandler = () => {
-        this.setState({ loading: true });
-        const order = {
-            ingredients: this.state.ingredients,
-            price: this.state.totalPrice,
-            customer: {
-                name: 'Patrick Niezen',
-                address: {
-                    street: 'Teststreet 1',
-                    zipCode: '34325',
-                    country: 'Netherlands'
-                },
-                email: 'test@test.com'
-            },
-            deliveryMethod: 'fastest'
-        };
+        // this.setState({ loading: true });
+        // const order = {
+        //     ingredients: this.state.ingredients,
+        //     price: this.state.totalPrice,
+        //     customer: {
+        //         name: 'Patrick Niezen',
+        //         address: {
+        //             street: 'Teststreet 1',
+        //             zipCode: '34325',
+        //             country: 'Netherlands'
+        //         },
+        //         email: 'test@test.com'
+        //     },
+        //     deliveryMethod: 'fastest'
+        // };
 
-        axios.post('/orders.json', order)
-            .then(response => console.log(response))
-            .catch(error => console.log(error))
-            .finally(() => {
-                this.setState({ loading: false, purchasing: false });
-            });
+        // axios.post('/orders.json', order)
+        //     .then(response => console.log(response))
+        //     .catch(error => console.log(error))
+        //     .finally(() => {
+        //         this.setState({ loading: false, purchasing: false });
+        //     });
+        const queryParams = [];
+        for(let i in this.state.ingredients) {
+            queryParams.push(encodeURIComponent(i) + '=' + encodeURIComponent(this.state.ingredients[i]));
+        }
+        const queryString = queryParams.join('&');
+
+        this.props.history.push({
+            pathname: '/checkout',
+            search: queryString
+        });
     }
 
     render() {
